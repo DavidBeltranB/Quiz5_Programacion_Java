@@ -1,0 +1,201 @@
+/**
+ * Clase Libro 
+ * 
+ * Descripción: Representa un libro con sus principales atributos
+ */
+
+public class Libro {
+
+  // Atributos
+  private String titulo;
+  private String autor; 
+  private int numeroPaginas;
+
+  /**
+   * Constructor de la clase Libro
+   * 
+   * Parámetros:
+   *   titulo - El título del libro
+   *   autor - El autor del libro  
+   *   numeroPaginas - El número de páginas del libro
+   *   
+   * Complejidad: O(1) - Tiempo constante
+   */
+  public Libro(String titulo, String autor, int numeroPaginas) {
+    this.titulo = titulo;
+    this.autor = autor;
+    this.numeroPaginas = numeroPaginas;
+  }
+
+  // Getters y Setters
+  
+  /**
+   * Devuelve el título del libro
+   * 
+   * Complejidad: O(1)
+   */
+  public String getTitulo() {
+    return titulo;
+  }
+
+  /**
+   * Establece el título del libro
+   * 
+   * Parámetros:
+   *   titulo - El nuevo título del libro
+   *   
+   * Complejidad: O(1)
+   */  
+  public void setTitulo(String titulo) {
+    this.titulo = titulo;
+  }
+
+  /**
+   * Devuelve el autor del libro
+   * 
+   * Complejidad: O(1)
+   */
+  public String getAutor() {
+    return autor;
+  }
+
+  /**
+   * Establece el autor del libro
+   * 
+   * Parámetros:
+   *   autor - El nuevo autor del libro
+   *   
+   * Complejidad: O(1)  
+   */
+  public void setAutor(String autor) {
+    this.autor = autor;
+  }
+
+  /**
+   * Devuelve el número de páginas del libro
+   * 
+   * Complejidad: O(1)
+   */
+  public int getNumeroPaginas() {
+    return numeroPaginas;
+  }
+
+  /**
+   * Establece el número de páginas del libro
+   *  
+   * Parámetros:
+   *   numeroPaginas - El nuevo número de páginas
+   *   
+   * Complejidad: O(1)
+   */
+  public void setNumeroPaginas(int numeroPaginas) {
+    this.numeroPaginas = numeroPaginas;
+  }
+
+}
+
+/**
+ * Clase Biblioteca
+ * 
+ * Descripción: Representa una biblioteca con una 
+ *              lista de libros disponibles.
+ */
+
+import java.util.ArrayList;
+
+public class Biblioteca {
+
+  // Atributos
+  private ArrayList<Libro> libros;
+
+  /**
+   * Constructor de la clase Biblioteca
+   * 
+   * Inicializa la lista de libros
+   * 
+   * Complejidad: O(1)
+   */
+  public Biblioteca() {
+    this.libros = new ArrayList<Libro>();
+  }
+
+  /**
+   * Registra un nuevo libro en la biblioteca
+   * 
+   * Parámetros:
+   *   libro - El objeto Libro a registrar
+   *   
+   * Complejidad: O(1)
+   */
+  public void registrarLibro(Libro libro) {
+    libros.add(libro);
+  }
+
+  /**
+   * Busca un libro por su título
+   * 
+   * Parámetros: 
+   *   titulo - El título del libro a buscar
+   * 
+   * Devuelve el objeto Libro encontrado o null si no existe.
+   * 
+   * Complejidad: O(N) - Tiempo lineal
+   */
+  public Libro buscarLibro(String titulo) {
+    for (Libro libro : libros) {
+      if (libro.getTitulo().equals(titulo)) {
+        return libro;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Muestra todos los libros disponibles en la biblioteca
+   * 
+   * Complejidad: O(N) 
+   */
+  public void mostrarLibros() {
+    System.out.println("Libros:");
+    for (Libro libro : libros) {
+      System.out.println(libro.getTitulo() + " - " + libro.getAutor());
+    }
+  }
+
+}
+
+public class Principal {
+
+  public static void main(String[] args) {
+    
+    // Crear objeto Biblioteca
+    Biblioteca bibliotecaKonradLorenz = new Biblioteca();
+    
+    // Crear libros
+    Libro libro1 = new Libro("Cien años de soledad", "Gabriel García Márquez", 496);
+    Libro libro2 = new Libro("El código Da Vinci", "Dan Brown", 656);
+    Libro libro3 = new Libro("1984", "George Orwell", 326);
+    Libro libro4 = new Libro("El Hobbit", "J.R.R. Tolkien", 310);
+    Libro libro5 = new Libro("La Odisea", "Homero", 448);
+
+    // Registrar libros en la biblioteca
+    bibliotecaKonradLorenz.registrarLibro(libro1);
+    bibliotecaKonradLorenz.registrarLibro(libro2);
+    bibliotecaKonradLorenz.registrarLibro(libro3);
+    bibliotecaKonradLorenz.registrarLibro(libro4);
+    bibliotecaKonradLorenz.registrarLibro(libro5);
+
+    // Mostrar libros
+    bibliotecaKonradLorenz.mostrarLibros();
+
+    // Buscar un libro
+    Libro libro = bibliotecaKonradLorenz.buscarLibro("1984");
+    if (libro != null) {
+      System.out.println("Libro encontrado: " + libro.getTitulo());
+    } else {
+      System.out.println("El libro no se encuentra en la biblioteca");
+    }
+
+  }
+
+}
